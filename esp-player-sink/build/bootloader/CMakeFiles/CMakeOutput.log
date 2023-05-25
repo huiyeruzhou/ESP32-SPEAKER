@@ -35,7 +35,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_fba45 && [1/2] Building C object CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj
+Run Build Command(s):/usr/bin/ninja cmTC_58892 && [1/2] Building C object CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj
 Using built-in specs.
 COLLECT_GCC=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-gcc
 Target: riscv32-esp-elf
@@ -43,8 +43,8 @@ Configured with: /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/configu
 Thread model: posix
 Supported LTO compression algorithms: zlib
 gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) 
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1 -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_fba45.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccc3R1Rw.s
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1 -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_58892.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccXZYXmv.s
 GNU C17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)
 	compiled by GNU C version 4.9.2, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
@@ -65,13 +65,13 @@ GNU C17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: fdf5973e24bb2f10eceba5406c3aa839
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj /tmp/ccc3R1Rw.s
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj /tmp/ccXZYXmv.s
 GNU assembler version 2.35.1 (riscv32-esp-elf) using BFD version (crosstool-NG esp-2022r1-RC1) 2.35.1.20201223
 COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.'
-[2/2] Linking C executable cmTC_fba45
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.'
+[2/2] Linking C executable cmTC_58892
 Using built-in specs.
 Reading specs from /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/nosys.specs
 rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence
@@ -84,10 +84,10 @@ Supported LTO compression algorithms: zlib
 gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) 
 COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_fba45' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_fba45.'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBHMtzV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_fba45 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_58892' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_58892.'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKxzqqY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_58892 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_fba45' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_fba45.'
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_58892' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_58892.'
 
 
 
@@ -110,7 +110,7 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(riscv32-esp-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_fba45 && [1/2] Building C object CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_58892 && [1/2] Building C object CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-gcc]
   ignore line: [Target: riscv32-esp-elf]
@@ -118,8 +118,8 @@ Parsed C implicit link information from above output:
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib]
   ignore line: [gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/']
-  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1 -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_fba45.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccc3R1Rw.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/']
+  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1 -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_58892.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccXZYXmv.s]
   ignore line: [GNU C17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)]
   ignore line: [	compiled by GNU C version 4.9.2  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
@@ -140,13 +140,13 @@ Parsed C implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: fdf5973e24bb2f10eceba5406c3aa839]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/']
-  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj /tmp/ccc3R1Rw.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/']
+  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj /tmp/ccXZYXmv.s]
   ignore line: [GNU assembler version 2.35.1 (riscv32-esp-elf) using BFD version (crosstool-NG esp-2022r1-RC1) 2.35.1.20201223]
   ignore line: [COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.']
-  ignore line: [[2/2] Linking C executable cmTC_fba45]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.']
+  ignore line: [[2/2] Linking C executable cmTC_58892]
   ignore line: [Using built-in specs.]
   ignore line: [Reading specs from /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/nosys.specs]
   ignore line: [rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence]
@@ -159,13 +159,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) ]
   ignore line: [COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_fba45' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_fba45.']
-  link line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccBHMtzV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_fba45 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
+  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_58892' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_58892.']
+  link line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKxzqqY.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_58892 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
     arg [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccBHMtzV.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccKxzqqY.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
@@ -176,11 +176,11 @@ Parsed C implicit link information from above output:
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-melf32lriscv] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_fba45] ==> ignore
+    arg [cmTC_58892] ==> ignore
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0]
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc]
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib]
-    arg [CMakeFiles/cmTC_fba45.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_58892.dir/CMakeCCompilerABI.c.obj] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [-lc] ==> lib [c]
     arg [-lnosys] ==> lib [nosys]
@@ -202,7 +202,7 @@ Parsed C implicit link information from above output:
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_26b7d && [1/2] Building CXX object CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj
+Run Build Command(s):/usr/bin/ninja cmTC_75799 && [1/2] Building CXX object CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj
 Using built-in specs.
 COLLECT_GCC=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-g++
 Target: riscv32-esp-elf
@@ -210,8 +210,8 @@ Configured with: /builds/idf/crosstool-NG/.build/riscv32-esp-elf/src/gcc/configu
 Thread model: posix
 Supported LTO compression algorithms: zlib
 gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) 
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1plus -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_26b7d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccn7VlxY.s
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1plus -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_75799.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccdOEn9M.s
 GNU C++17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)
 	compiled by GNU C version 4.9.2, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
 
@@ -238,13 +238,13 @@ GNU C++17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)
 
 GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
 Compiler executable checksum: c16ff94b798953c0c5bd71fbea629659
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccn7VlxY.s
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccdOEn9M.s
 GNU assembler version 2.35.1 (riscv32-esp-elf) using BFD version (crosstool-NG esp-2022r1-RC1) 2.35.1.20201223
 COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.'
-[2/2] Linking CXX executable cmTC_26b7d
+COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.'
+[2/2] Linking CXX executable cmTC_75799
 Using built-in specs.
 Reading specs from /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/nosys.specs
 rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence
@@ -257,10 +257,10 @@ Supported LTO compression algorithms: zlib
 gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) 
 COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/
 LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_26b7d' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_26b7d.'
- /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cczHywOK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_26b7d -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_75799' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_75799.'
+ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc9VOjXV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_75799 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
-COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_26b7d' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_26b7d.'
+COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_75799' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_75799.'
 
 
 
@@ -289,7 +289,7 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(riscv32-esp-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_26b7d && [1/2] Building CXX object CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_75799 && [1/2] Building CXX object CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-g++]
   ignore line: [Target: riscv32-esp-elf]
@@ -297,8 +297,8 @@ Parsed CXX implicit link information from above output:
   ignore line: [Thread model: posix]
   ignore line: [Supported LTO compression algorithms: zlib]
   ignore line: [gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) ]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/']
-  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1plus -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_26b7d.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccn7VlxY.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/']
+  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/cc1plus -quiet -v -iprefix /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/ /usr/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_75799.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -march=rv32imc -mabi=ilp32 -march=rv32imc -version -o /tmp/ccdOEn9M.s]
   ignore line: [GNU C++17 (crosstool-NG esp-2022r1-RC1) version 11.2.0 (riscv32-esp-elf)]
   ignore line: [	compiled by GNU C version 4.9.2  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
   ignore line: []
@@ -325,13 +325,13 @@ Parsed CXX implicit link information from above output:
   ignore line: []
   ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
   ignore line: [Compiler executable checksum: c16ff94b798953c0c5bd71fbea629659]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/']
-  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccn7VlxY.s]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/']
+  ignore line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/as -v --traditional-format -march=rv32imc -march=rv32imc -mabi=ilp32 -o CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccdOEn9M.s]
   ignore line: [GNU assembler version 2.35.1 (riscv32-esp-elf) using BFD version (crosstool-NG esp-2022r1-RC1) 2.35.1.20201223]
   ignore line: [COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.']
-  ignore line: [[2/2] Linking CXX executable cmTC_26b7d]
+  ignore line: [COLLECT_GCC_OPTIONS='-march=rv32imc' '-v' '-o' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [[2/2] Linking CXX executable cmTC_75799]
   ignore line: [Using built-in specs.]
   ignore line: [Reading specs from /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/nosys.specs]
   ignore line: [rename spec link_gcc_c_sequence to nosys_link_gcc_c_sequence]
@@ -344,13 +344,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 11.2.0 (crosstool-NG esp-2022r1-RC1) ]
   ignore line: [COMPILER_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/]
   ignore line: [LIBRARY_PATH=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/:/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_26b7d' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_26b7d.']
-  link line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cczHywOK.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_26b7d -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
+  ignore line: [COLLECT_GCC_OPTIONS='-nostartfiles' '-march=rv32imc' '-specs=nosys.specs' '-v' '-o' 'cmTC_75799' '-mabi=ilp32' '-march=rv32imc' '-dumpdir' 'cmTC_75799.']
+  link line: [ /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2 -plugin /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so -plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc9VOjXV.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lnosys -melf32lriscv -o cmTC_75799 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0 -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc -L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm -lgcc -lc -lnosys -lc -lgcc --start-group -lgcc -lc -lnosys --end-group]
     arg [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../libexec/gcc/riscv32-esp-elf/11.2.0/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/cczHywOK.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc9VOjXV.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
@@ -361,11 +361,11 @@ Parsed CXX implicit link information from above output:
     arg [-plugin-opt=-pass-through=-lnosys] ==> ignore
     arg [-melf32lriscv] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_26b7d] ==> ignore
+    arg [cmTC_75799] ==> ignore
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0]
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc]
     arg [-L/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib] ==> dir [/root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/lib]
-    arg [CMakeFiles/cmTC_26b7d.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [CMakeFiles/cmTC_75799.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc] ==> lib [gcc]
@@ -389,8 +389,8 @@ Parsed CXX implicit link information from above output:
 Determining if the include file sys/types.h exists passed with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_ea1c3 && [1/2] Building C object CMakeFiles/cmTC_ea1c3.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_ea1c3
+Run Build Command(s):/usr/bin/ninja cmTC_f5cbf && [1/2] Building C object CMakeFiles/cmTC_f5cbf.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_f5cbf
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
 
 
@@ -398,8 +398,8 @@ Run Build Command(s):/usr/bin/ninja cmTC_ea1c3 && [1/2] Building C object CMakeF
 Determining if the include file stdint.h exists passed with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_52d36 && [1/2] Building C object CMakeFiles/cmTC_52d36.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_52d36
+Run Build Command(s):/usr/bin/ninja cmTC_105e2 && [1/2] Building C object CMakeFiles/cmTC_105e2.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_105e2
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
 
 
@@ -407,8 +407,8 @@ Run Build Command(s):/usr/bin/ninja cmTC_52d36 && [1/2] Building C object CMakeF
 Determining if the include file stddef.h exists passed with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_fb923 && [1/2] Building C object CMakeFiles/cmTC_fb923.dir/CheckIncludeFile.c.obj
-[2/2] Linking C executable cmTC_fb923
+Run Build Command(s):/usr/bin/ninja cmTC_84f77 && [1/2] Building C object CMakeFiles/cmTC_84f77.dir/CheckIncludeFile.c.obj
+[2/2] Linking C executable cmTC_84f77
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010054
 
 
@@ -416,8 +416,8 @@ Run Build Command(s):/usr/bin/ninja cmTC_fb923 && [1/2] Building C object CMakeF
 Determining size of time_t passed with the following output:
 Change Dir: /home/FreeRTOS_research_esp32c3_Microphone/esp-player-sink/build/bootloader/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/ninja cmTC_d9033 && [1/2] Building C object CMakeFiles/cmTC_d9033.dir/TIME_T_SIZE.c.obj
-[2/2] Linking C executable cmTC_d9033
+Run Build Command(s):/usr/bin/ninja cmTC_3fb18 && [1/2] Building C object CMakeFiles/cmTC_3fb18.dir/TIME_T_SIZE.c.obj
+[2/2] Linking C executable cmTC_3fb18
 /root/.espressif/tools/riscv32-esp-elf/esp-2022r1-RC1-11.2.0/riscv32-esp-elf/bin/../lib/gcc/riscv32-esp-elf/11.2.0/../../../../riscv32-esp-elf/bin/ld: warning: cannot find entry symbol _start; defaulting to 0000000000010074
 
 

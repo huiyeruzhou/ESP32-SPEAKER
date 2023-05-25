@@ -85,7 +85,7 @@ int main() {
     int decodeSamples;
 	sleep(3);
     FILE *fp;
-    fp = fopen("data.opus", "wb"); // 打开文件 
+    fp = fopen("data.pcm", "wb"); // 打开文件 
 
     for(;;){
         gettimeofday(&start1, NULL);
@@ -128,7 +128,7 @@ int main() {
         }
         //ao_play(player, (char*)out1, decodeSamples*3);
         //fseek(fp, 0, SEEK_END); // 将文件指针移动到文件末尾
-        int fwritelen=fwrite(out1, sizeof(char), len, fp); // 写入数据
+        int fwritelen=fwrite(out1, sizeof(char), decodeSamples*2*2, fp); // 写入数据
         if(fwritelen<len)printf("fwrite error\n");
         else printf("fwritelen = %d\n",fwritelen);
 		gettimeofday(&end, NULL);

@@ -129,7 +129,7 @@ void app_main(void) {
            esp_get_minimum_free_heap_size());
 
 #ifdef CONFIG_EXAMPLE_IPV4
-    TaskHandle_t tcp_server_handle = xTaskCreate(tcp_server_task, "tcp_server", 120000, (void*)AF_INET, 5, NULL);
+    TaskHandle_t tcp_server_handle = xTaskCreate(tcp_server_task, "tcp_server", 100000, (void*)AF_INET, 5, NULL);
 	if (tcp_server_handle == NULL) {
     // 任务创建失败
 	ESP_LOGI(TAG, "任务创建失败4");
@@ -140,7 +140,7 @@ void app_main(void) {
 		
 #endif
 #ifdef CONFIG_EXAMPLE_IPV6
-    TaskHandle_t tcp_server_handle = xTaskCreate(tcp_server_task, "tcp_server", 120000, (void*)AF_INET6, 5, NULL);
+    TaskHandle_t tcp_server_handle = xTaskCreate(tcp_server_task, "tcp_server", 100000, (void*)AF_INET6, 5, NULL);
 	if (tcp_server_handle == NULL) {
     // 任务创建失败
 	ESP_LOGI(TAG, "任务创建失败6");
@@ -446,7 +446,7 @@ void i2s_config_proc() {
         .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,//I2S_CHANNEL_FMT_ONLY_RIGHT,
         .communication_format =I2S_COMM_FORMAT_STAND_I2S, 
         .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
-        .dma_buf_count = 10,
+        .dma_buf_count = 3,
         .dma_buf_len = 1024,
         .use_apll = 0,
         .tx_desc_auto_clear = 0,
