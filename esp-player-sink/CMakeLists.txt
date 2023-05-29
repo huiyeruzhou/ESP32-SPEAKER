@@ -2,7 +2,7 @@
 # CMakeLists in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.16)
 
-set(EXTRA_COMPONENT_DIRS components/components/opus)# components/protobuf-c-rpc)
+#set(EXTRA_COMPONENT_DIRS components/components/opus)# components/protobuf-c-rpc)
 #include($ENV{ADF_PATH}/CMakeLists.txt)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(hello_opus)
