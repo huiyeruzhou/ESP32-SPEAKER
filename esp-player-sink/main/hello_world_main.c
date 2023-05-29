@@ -28,8 +28,8 @@
 
 #include "driver/i2s.h"
 #include <sys/time.h>
-#define ESP_WIFI_SSID "yu"
-#define ESP_WIFI_PASS "esp32c3."
+#define ESP_WIFI_SSID "ChinaUnicom-4DUDHP"
+#define ESP_WIFI_PASS "12345678"
 #define ESP_MAXIMUM_RETRY 5
 #define TAG "dudu"
 
