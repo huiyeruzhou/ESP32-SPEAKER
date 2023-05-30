@@ -28,8 +28,8 @@
 
 #include "driver/i2s.h"
 #include <sys/time.h>
-#define ESP_WIFI_SSID "dududud"
-#define ESP_WIFI_PASS "00000000"
+#define ESP_WIFI_SSID "ChinaUnicom-4DUDHP"
+#define ESP_WIFI_PASS "12345678"
 #define ESP_MAXIMUM_RETRY 5
 #define TAG "luo980"
 
@@ -52,11 +52,11 @@ static EventGroupHandle_t s_wifi_event_group;
 static int s_retry_num = 0;
 
 void wifi_init_sta(void);
-static void event_handler(void* arg,
-                          esp_event_base_t event_base,
-                          int32_t event_id,
-                          void* event_data);
-static void tcp_server_task(void* pvParameters);
+static void event_handler(void *arg,
+    esp_event_base_t event_base,
+    int32_t event_id,
+    void *event_data);
+static void tcp_server_task(void *pvParameters);
 static void do_retransmit(const int sock);
 static void do_decode(const int sock);
 void i2s_config_proc();
@@ -102,8 +102,8 @@ void app_main(void) {
     uint32_t flash_size;
     esp_chip_info(&chip_info);
     printf("This is %s chip with %d CPU core(s), WiFi%s%s, ", CONFIG_IDF_TARGET,
-           chip_info.cores, (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
-           (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
+        chip_info.cores, (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
+        (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
 
     unsigned major_rev = chip_info.revision / 100;
     unsigned minor_rev = chip_info.revision % 100;
@@ -116,26 +116,18 @@ void app_main(void) {
     wifi_init_sta();
 
     printf("%uMB %s flash\n", flash_size / (1024 * 1024),
-           (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded"
-                                                         : "external");
+        (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded"
+        : "external");
 
     printf("Minimum free heap size: %d bytes\n",
-           esp_get_minimum_free_heap_size());
+        esp_get_minimum_free_heap_size());
 
 #ifdef CONFIG_EXAMPLE_IPV4
-    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void*)AF_INET, 3, NULL);
+    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void *) AF_INET, 3, NULL);
 #endif
 #ifdef CONFIG_EXAMPLE_IPV6
-    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void*)AF_INET6, 3, NULL);
+    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void *) AF_INET6, 3, NULL);
 #endif
-
-    for (int i = 100; i >= 0; i--) {
-        printf("Restarting in %d seconds...\n", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-    printf("Restarting now.\n");
-    fflush(stdout);
-    esp_restart();
 }
 
 void wifi_init_sta(void) {
@@ -182,40 +174,45 @@ void wifi_init_sta(void) {
      * or connection failed for the maximum number of re-tries (WIFI_FAIL_BIT).
      * The bits are set by event_handler() (see above) */
     EventBits_t bits = xEventGroupWaitBits(s_wifi_event_group,
-                                           WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
-                                           pdFALSE, pdFALSE, portMAX_DELAY);
+        WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
+        pdFALSE, pdFALSE, portMAX_DELAY);
 
     /* xEventGroupWaitBits() returns the bits before the call returned, hence we
      * can test which event actually happened. */
     if (bits & WIFI_CONNECTED_BIT) {
         ESP_LOGI(TAG, "connected to ap SSID:%s password:%s", ESP_WIFI_SSID,
-                 ESP_WIFI_PASS);
-    } else if (bits & WIFI_FAIL_BIT) {
+            ESP_WIFI_PASS);
+    }
+    else if (bits & WIFI_FAIL_BIT) {
         ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
-                 ESP_WIFI_SSID, ESP_WIFI_PASS);
-    } else {
+            ESP_WIFI_SSID, ESP_WIFI_PASS);
+    }
+    else {
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }
 }
 
-static void event_handler(void* arg,
-                          esp_event_base_t event_base,
-                          int32_t event_id,
-                          void* event_data) {
+static void event_handler(void *arg,
+    esp_event_base_t event_base,
+    int32_t event_id,
+    void *event_data) {
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
-    } else if (event_base == WIFI_EVENT &&
-               event_id == WIFI_EVENT_STA_DISCONNECTED) {
+    }
+    else if (event_base == WIFI_EVENT &&
+        event_id == WIFI_EVENT_STA_DISCONNECTED) {
         if (s_retry_num < ESP_MAXIMUM_RETRY) {
             esp_wifi_connect();
             s_retry_num++;
             ESP_LOGI(TAG, "retry to connect to the AP");
-        } else {
+        }
+        else {
             xEventGroupSetBits(s_wifi_event_group, WIFI_FAIL_BIT);
         }
         ESP_LOGI(TAG, "connect to the AP fail");
-    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
-        ip_event_got_ip_t* event = (ip_event_got_ip_t*)event_data;
+    }
+    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+        ip_event_got_ip_t *event = (ip_event_got_ip_t *) event_data;
         ESP_LOGI(TAG, "got ip:" IPSTR, IP2STR(&event->ip_info.ip));
         s_retry_num = 0;
         xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
@@ -230,11 +227,13 @@ static void do_retransmit(const int sock) {
         len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
         if (len < 0) {
             ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
-        } else if (len == 0) {
+        }
+        else if (len == 0) {
             ESP_LOGW(TAG, "Connection closed");
-        } else {
+        }
+        else {
             rx_buffer[len] = 0;  // Null-terminate whatever is received and
-                                 // treat it like a string
+            // treat it like a string
             ESP_LOGI(TAG, "Received %d bytes: %s", len, rx_buffer);
 
             // send() can return less bytes than supplied length.
@@ -245,7 +244,7 @@ static void do_retransmit(const int sock) {
                     send(sock, rx_buffer + (len - to_write), to_write, 0);
                 if (written < 0) {
                     ESP_LOGE(TAG, "Error occurred during sending: errno %d",
-                             errno);
+                        errno);
                     // Failed to retransmit, giving up
                     return;
                 }
@@ -255,9 +254,9 @@ static void do_retransmit(const int sock) {
     } while (len > 0);
 }
 
-static void tcp_server_task(void* pvParameters) {
+static void tcp_server_task(void *pvParameters) {
     char addr_str[128];
-    int addr_family = (int)pvParameters;
+    int addr_family = (int) pvParameters;
     int ip_protocol = 0;
     int keepAlive = 1;
     int keepIdle = KEEPALIVE_IDLE;
@@ -266,7 +265,7 @@ static void tcp_server_task(void* pvParameters) {
     struct sockaddr_storage dest_addr;
 
     if (addr_family == AF_INET) {
-        struct sockaddr_in* dest_addr_ip4 = (struct sockaddr_in*)&dest_addr;
+        struct sockaddr_in *dest_addr_ip4 = (struct sockaddr_in *) &dest_addr;
         dest_addr_ip4->sin_addr.s_addr = htonl(INADDR_ANY);
         dest_addr_ip4->sin_family = AF_INET;
         dest_addr_ip4->sin_port = htons(PORT);
@@ -274,9 +273,9 @@ static void tcp_server_task(void* pvParameters) {
     }
 #ifdef CONFIG_EXAMPLE_IPV6
     else if (addr_family == AF_INET6) {
-        struct sockaddr_in6* dest_addr_ip6 = (struct sockaddr_in6*)&dest_addr;
+        struct sockaddr_in6 *dest_addr_ip6 = (struct sockaddr_in6 *) &dest_addr;
         bzero(&dest_addr_ip6->sin6_addr.un,
-              sizeof(dest_addr_ip6->sin6_addr.un));
+            sizeof(dest_addr_ip6->sin6_addr.un));
         dest_addr_ip6->sin6_family = AF_INET6;
         dest_addr_ip6->sin6_port = htons(PORT);
         ip_protocol = IPPROTO_IPV6;
@@ -300,7 +299,7 @@ static void tcp_server_task(void* pvParameters) {
     ESP_LOGI(TAG, "Socket created");
 
     int err =
-        bind(listen_sock, (struct sockaddr*)&dest_addr, sizeof(dest_addr));
+        bind(listen_sock, (struct sockaddr *) &dest_addr, sizeof(dest_addr));
     if (err != 0) {
         ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
         ESP_LOGE(TAG, "IPPROTO: %d", addr_family);
@@ -313,7 +312,7 @@ static void tcp_server_task(void* pvParameters) {
         ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
         goto CLEAN_UP;
     }
-
+    
     while (1) {
         ESP_LOGI(TAG, "Socket listening");
 
@@ -321,7 +320,7 @@ static void tcp_server_task(void* pvParameters) {
             source_addr;  // Large enough for both IPv4 or IPv6
         socklen_t addr_len = sizeof(source_addr);
         int sock =
-            accept(listen_sock, (struct sockaddr*)&source_addr, &addr_len);
+            accept(listen_sock, (struct sockaddr *) &source_addr, &addr_len);
         if (sock < 0) {
             ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
             break;
@@ -332,17 +331,17 @@ static void tcp_server_task(void* pvParameters) {
         setsockopt(sock, SOL_SOCKET, SO_KEEPALIVE, &keepAlive, sizeof(int));
         setsockopt(sock, IPPROTO_TCP, TCP_KEEPIDLE, &keepIdle, sizeof(int));
         setsockopt(sock, IPPROTO_TCP, TCP_KEEPINTVL, &keepInterval,
-                   sizeof(int));
+            sizeof(int));
         setsockopt(sock, IPPROTO_TCP, TCP_KEEPCNT, &keepCount, sizeof(int));
         // Convert ip address to string
         if (source_addr.ss_family == PF_INET) {
-            inet_ntoa_r(((struct sockaddr_in*)&source_addr)->sin_addr, addr_str,
-                        sizeof(addr_str) - 1);
+            inet_ntoa_r(((struct sockaddr_in *) &source_addr)->sin_addr, addr_str,
+                sizeof(addr_str) - 1);
         }
 #ifdef CONFIG_EXAMPLE_IPV6
         else if (source_addr.ss_family == PF_INET6) {
-            inet6_ntoa_r(((struct sockaddr_in6*)&source_addr)->sin6_addr,
-                         addr_str, sizeof(addr_str) - 1);
+            inet6_ntoa_r(((struct sockaddr_in6 *) &source_addr)->sin6_addr,
+                addr_str, sizeof(addr_str) - 1);
         }
 #endif
         ESP_LOGI(TAG, "Socket accepted ip address: %s", addr_str);
@@ -351,6 +350,7 @@ static void tcp_server_task(void* pvParameters) {
 
         ESP_LOGI(TAG, "i2s config end.\n");
 
+        
         do_decode(sock);
 
         ESP_LOGI(TAG, "Exit Decoding.\n");
@@ -369,108 +369,109 @@ static void do_decode(const int sock) {
     int err, len;
     unsigned char rx_buffer[640];
 
-    OpusDecoder* decoder = opus_decoder_create(RATE, CHANNELS, &err);
+    OpusDecoder *decoder = opus_decoder_create(RATE, CHANNELS, &err);
     if (err < 0) {
         fprintf(stderr, "failed to create decoder: %s\n", opus_strerror(err));
     }
-    struct timeval start, end,start1,end1,start2,end2,start_total,end_total;
+    struct timeval start, end, start1, end1, start2, end2, start_total, end_total;
     opus_int16 out1[1920];
     int decodeSamples;
-	int a=0;
-    char confirm[10]="ok";
+    int a = 0;
+    char confirm[10] = "ok";
     //xTaskCreate(test_task, "test_task", 5000, NULL, 5, NULL);
 
 
-        gettimeofday(&start1,NULL);
-        len = recv(sock,rx_buffer, sizeof(rx_buffer), 0);
-        gettimeofday(&end1,NULL);
-        
-		printf("   len=%d        recv %dus\n",len,end1.tv_usec-start1.tv_usec);
-        if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
-        } else if (len == 0) {
-            ESP_LOGW(TAG, "Connection closed");
-        }
-        else{
-            gettimeofday(&start1,NULL);
-            send(sock,confirm,10,0);    
-            gettimeofday(&end1,NULL);
-            printf("send is %dus\n",end1.tv_usec-start1.tv_usec);
-        }
-        gettimeofday(&start_total,NULL);
+    gettimeofday(&start1, NULL);
+    len = recv(sock, rx_buffer, sizeof(rx_buffer), 0);
+    gettimeofday(&end1, NULL);
+
+    printf("   len=%d        recv %dus\n", len, end1.tv_usec - start1.tv_usec);
+    if (len < 0) {
+        ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
+    }
+    else if (len == 0) {
+        ESP_LOGW(TAG, "Connection closed");
+    }
+    else {
+        gettimeofday(&start1, NULL);
+        send(sock, confirm, 10, 0);
+        gettimeofday(&end1, NULL);
+        printf("send is %dus\n", end1.tv_usec - start1.tv_usec);
+    }
+    gettimeofday(&start_total, NULL);
+    int i = 1;
     while (1) {
-        gettimeofday(&start,NULL);
-		
-        
-			
-            //rx_buffer[len] = 0;  // Null-terminate whatever is received and
-                                 // treat it like a string
-            //ESP_LOGI(TAG, "Received %d", len);
-			/*
-			gettimeofday(&start2,NULL);
-            a+=1;
-			printf("a=%d\n",a);
-			if(a==2){
-				
-				send(sock,confirm,2,0);
-				gettimeofday(&end1,NULL);
-				printf("send %dus\n",end1.tv_usec-start1.tv_usec);
-				if (len>0){
-					a=0;
-				}
-				else{
-					send(sock,confirm,2,0);	
-				}
-			}
-			gettimeofday(&end2,NULL);
-			printf("if is %dus\n",end2.tv_usec-start1.tv_usec);
-			*/
-            //gettimeofday(&start1,NULL);
-            //memset(out1,0,sizeof(out1));
-            //gettimeofday(&end1,NULL);
-            //ESP_LOGI(TAG,"memset %dus",end1.tv_usec-start1.tv_usec);
-            //ESP_LOGI(TAG,"end2 %dus",end2.tv_usec-start2.tv_usec);
-    //--------------------------------------------------------------------//
-        gettimeofday(&start1,NULL);
+        ESP_LOGW(TAG, "i = %d\n", i);
+        gettimeofday(&start, NULL);
+
+        //rx_buffer[len] = 0;  // Null-terminate whatever is received and
+                             // treat it like a string
+        //ESP_LOGI(TAG, "Received %d", len);
+        /*
+        gettimeofday(&start2,NULL);
+        a+=1;
+        printf("a=%d\n",a);
+        if(a==2){
+
+            send(sock,confirm,2,0);
+            gettimeofday(&end1,NULL);
+            printf("send %dus\n",end1.tv_usec-start1.tv_usec);
+            if (len>0){
+                a=0;
+            }
+            else{
+                send(sock,confirm,2,0);
+            }
+        }
+        gettimeofday(&end2,NULL);
+        printf("if is %dus\n",end2.tv_usec-start1.tv_usec);
+        */
+        //gettimeofday(&start1,NULL);
+        //memset(out1,0,sizeof(out1));
+        //gettimeofday(&end1,NULL);
+        //ESP_LOGI(TAG,"memset %dus",end1.tv_usec-start1.tv_usec);
+        //ESP_LOGI(TAG,"end2 %dus",end2.tv_usec-start2.tv_usec);
+//--------------------------------------------------------------------//
+        gettimeofday(&start1, NULL);
         decodeSamples =
-        opus_decode(decoder, rx_buffer, len, out1, frame_size, 0);
-        gettimeofday(&end1,NULL);
-		printf("opus_decode %dus\n",end1.tv_usec-start1.tv_usec);
+            opus_decode(decoder, rx_buffer, len, out1, frame_size, 0);
+        gettimeofday(&end1, NULL);
+        printf("opus_decode %dus\n", end1.tv_usec - start1.tv_usec);
         printf("decodeSamples= %d\n", decodeSamples);
-//-----------------------------------------------------------------//
+        //-----------------------------------------------------------------//
         size_t BytesWritten;
-        gettimeofday(&start1,NULL);
-        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out1, decodeSamples*2, &BytesWritten, portMAX_DELAY));
-        gettimeofday(&end1,NULL);
-        printf("i2s_write %dus\n",end1.tv_usec-start1.tv_usec);
-//-------------------------------------------------------------------//
-        gettimeofday(&start1,NULL);
-        opus_int16 * out2=out1;
-        len = recv(sock,rx_buffer, sizeof(rx_buffer), 0);
-        if (len>0){
-            gettimeofday(&end1,NULL);
-		    printf("   len=%d        recv %dus\n",len,end1.tv_usec-start1.tv_usec);
-            gettimeofday(&start1,NULL);
-            send(sock,confirm,10,0);    
-            gettimeofday(&end1,NULL);
-            printf("send is %dus\n",end1.tv_usec-start1.tv_usec);
+        gettimeofday(&start1, NULL);
+        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out1, decodeSamples * 2, &BytesWritten, portMAX_DELAY));
+        gettimeofday(&end1, NULL);
+        printf("i2s_write %dus\n", end1.tv_usec - start1.tv_usec);
+        //-------------------------------------------------------------------//
+        gettimeofday(&start1, NULL);
+        opus_int16 *out2 = out1;
+        len = recv(sock, rx_buffer, sizeof(rx_buffer), 0);
+        if (len > 0) {
+            gettimeofday(&end1, NULL);
+            printf("   len=%d        recv %dus\n", len, end1.tv_usec - start1.tv_usec);
+            gettimeofday(&start1, NULL);
+            send(sock, confirm, 10, 0);
+            gettimeofday(&end1, NULL);
+            printf("send is %dus\n", end1.tv_usec - start1.tv_usec);
         }
         if (len == 0) {
             ESP_LOGW(TAG, "Connection closed");
             break;
         }
-        else if(len <0){
+        else if (len < 0) {
             ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
             break;
         }
-//------------------------------------------------------------//
-//-----------------------------------------------------------//
+        //------------------------------------------------------------//
+        //-----------------------------------------------------------//
 
-        gettimeofday(&start1,NULL);
-        out2=out2+(decodeSamples);
-        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out2, decodeSamples*2, &BytesWritten, portMAX_DELAY));
-        gettimeofday(&end1,NULL);
-        printf("i2s_write %dus\n",end1.tv_usec-start1.tv_usec);
+        gettimeofday(&start1, NULL);
+        out2 = out2 + (decodeSamples);
+        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out2, decodeSamples * 2, &BytesWritten, portMAX_DELAY));
+        gettimeofday(&end1, NULL);
+        printf("i2s_write %dus\n", end1.tv_usec - start1.tv_usec);
         vTaskDelay(5 / portTICK_PERIOD_MS);
 
         /*
@@ -480,19 +481,19 @@ static void do_decode(const int sock) {
         gettimeofday(&end1,NULL);
         printf("i2s_write %dus\n",end1.tv_usec-start1.tv_usec);
         */
-        printf("BytesWritten=%d\n",BytesWritten);
-        gettimeofday(&end,NULL);
-		printf("one frame %dus\n",end.tv_usec-start.tv_usec);
+        printf("BytesWritten=%d\n", BytesWritten);
+        gettimeofday(&end, NULL);
+        printf("one frame %dus\n", end.tv_usec - start.tv_usec);
     }
-    gettimeofday(&end_total,NULL);
-    printf("one---------- time %lf ms\n",(end_total.tv_sec-start_total.tv_sec)*1000.0+(end_total.tv_usec-start_total.tv_usec)/1000.0);
+    gettimeofday(&end_total, NULL);
+    printf("one---------- time %lf ms\n", (end_total.tv_sec - start_total.tv_sec) * 1000.0 + (end_total.tv_usec - start_total.tv_usec) / 1000.0);
 
 }
 
 void i2s_config_proc() {
     // i2s config for writing both channels of I2S
     i2s_config_t i2s_config = {
-        .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),
+        .mode = (i2s_mode_t) (I2S_MODE_MASTER | I2S_MODE_TX),
         .sample_rate = RATE,
         .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
         .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
@@ -502,14 +503,14 @@ void i2s_config_proc() {
         .dma_buf_len = 1024,
         .use_apll = 1,
         .tx_desc_auto_clear = true,
-        .fixed_mclk = 12288000};
+        .fixed_mclk = 12288000 };
 
     // i2s pinout
     static const i2s_pin_config_t pin_config = {
         .bck_io_num = 19,
         .ws_io_num = 1,
         .data_out_num = 18,
-        .data_in_num = I2S_PIN_NO_CHANGE};
+        .data_in_num = I2S_PIN_NO_CHANGE };
 
 
     // install and start i2s driver
