@@ -112,7 +112,7 @@ public:
         assert(status < 5);
         status = status_transfer[status][1];
         gettimeofday((struct timeval *) &last_update, NULL);
-        xTaskCreate(micronphone_task, "micronphone", 8192, NULL, 5, &microphone_server_handle);
+        xTaskCreate(micronphone_task, "micronphone", 32768, NULL, 5, &microphone_server_handle);
         abilityPort = MICROPHONE_PORT;
         if (microphone_server_handle == NULL) {
             // 任务创建失败

@@ -22,7 +22,6 @@
 #define frame_size (RATE/1000*20)
 #define encodedatasize (frame_size*(BITS/8)*CHANNELS)
 #define MAX_PACKET_SIZE (640)
-#define COUNTERLEN 4000
 
 
 
@@ -155,7 +154,7 @@ void do_decode(const int sock) {
     //char * i2s_rx = in1;
     //xTaskCreate(test_task, "test_task", 5000, NULL, 5, NULL);
     int counter = 1;
-    int len_opus[COUNTERLEN] = { 0 };
+    int len_opus;
     gettimeofday(&start_total, NULL);
     while (1) {
         gettimeofday(&start, NULL);
@@ -165,16 +164,18 @@ void do_decode(const int sock) {
         gettimeofday(&start1, NULL);
         ESP_ERROR_CHECK(i2s_read(I2S_NUM_0, (char *) in1, encodedatasize, &BytesRead, portMAX_DELAY));
         gettimeofday(&end1, NULL);
+        int left = uxTaskGetStackHighWaterMark(NULL);
+        ESP_LOGE(TAG, "%d byte of stack left", left);
         printf("i2s_read %ld us,BytesRead=%d \n", end1.tv_usec - start1.tv_usec, BytesRead);
         //-----------------------------------------------------------------//
         gettimeofday(&start1, NULL);
-        len_opus[counter] = opus_encode(enc, in1, frame_size, tx_buffer, MAX_PACKET_SIZE);
+        len_opus = opus_encode(enc, in1, frame_size, tx_buffer, MAX_PACKET_SIZE);
         gettimeofday(&end1, NULL);
-        printf("opus_encode %ld us  ,len_opus[counter]= %d\n", end1.tv_usec - start1.tv_usec, len_opus[counter]);
+        printf("opus_encode %ld us  ,len_opus[counter]= %d\n", end1.tv_usec - start1.tv_usec, len_opus);
         //-------------------------------------------------------------------//
         //
-        if (len_opus[counter] < 0) {
-            printf("failed to encode:%s \n", opus_strerror(len_opus[counter]));
+        if (len_opus < 0) {
+            printf("failed to encode:%s \n", opus_strerror(len_opus));
             goto Done;
         }
         //*(int*)cbits_vtmp =tv;
@@ -193,7 +194,7 @@ void do_decode(const int sock) {
         }
         else {
             gettimeofday(&start1, NULL);
-            int sendlen = send(sock, tx_buffer, len_opus[counter], 0);
+            int sendlen = send(sock, tx_buffer, len_opus, 0);
             gettimeofday(&end1, NULL);
             printf("send is %ld us\n", end1.tv_usec - start1.tv_usec);
             if (sendlen > 0) {

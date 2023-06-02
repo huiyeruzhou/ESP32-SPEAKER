@@ -109,6 +109,10 @@ extern "C" void app_main(void) {
         std::to_string(std::time(nullptr))).c_str());
 
     server = start_webserver();
+
+    while (1) {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
 }
 
 
