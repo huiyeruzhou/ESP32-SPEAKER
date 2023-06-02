@@ -62,7 +62,6 @@ void micronphone_task(void *pvParameters) {
     if (listen_sock < 0) {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
         vTaskDelete(NULL);
-        return;
     }
     int opt = 1;
     setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
@@ -125,7 +124,80 @@ void micronphone_task(void *pvParameters) {
 
         ESP_LOGI(TAG, "Socket accepted ip address: %s", addr_str);
 
-        do_decode(sock);
+        // do_decode(sock);
+        int len;
+        unsigned char cbits[500];
+        unsigned char *tx_buffer = cbits;
+        unsigned char rx_ok[10];
+        OpusEncoder *enc = encoder_init(RATE, CHANNELS, OPUS_APPLICATION_VOIP);
+        struct timeval start, end, start1, end1, start_total, end_total;
+        opus_int16 *in1 = (opus_int16 *) malloc(sizeof(opus_int16) * encodedatasize);
+        //char * i2s_rx = in1;
+        //xTaskCreate(test_task, "test_task", 5000, NULL, 5, NULL);
+        int counter = 1;
+        int len_opus;
+        gettimeofday(&start_total, NULL);
+        while (1) {
+            gettimeofday(&start, NULL);
+
+            //--------------------------------------------------------------------//
+            size_t BytesRead;
+            gettimeofday(&start1, NULL);
+            ESP_ERROR_CHECK(i2s_read(I2S_NUM_0, (char *) in1, encodedatasize, &BytesRead, portMAX_DELAY));
+            gettimeofday(&end1, NULL);
+            int left = uxTaskGetStackHighWaterMark(NULL);
+            ESP_LOGE(TAG, "%d byte of stack left", left);
+            printf("i2s_read %ld us,BytesRead=%d \n", end1.tv_usec - start1.tv_usec, BytesRead);
+            //-----------------------------------------------------------------//
+            gettimeofday(&start1, NULL);
+            len_opus = opus_encode(enc, in1, frame_size, tx_buffer, MAX_PACKET_SIZE);
+            gettimeofday(&end1, NULL);
+            printf("opus_encode %ld us  ,len_opus[counter]= %d\n", end1.tv_usec - start1.tv_usec, len_opus);
+            //-------------------------------------------------------------------//
+            //
+            if (len_opus < 0) {
+                printf("failed to encode:%s \n", opus_strerror(len_opus));
+                goto Done;
+            }
+            //*(int*)cbits_vtmp =tv;
+            printf("recving \n");
+            gettimeofday(&start1, NULL);
+            len = recv(sock, rx_ok, sizeof(rx_ok), 0);//MSG_DONTWAIT);
+            gettimeofday(&end1, NULL);
+            printf("recv is %ld us\n", end1.tv_usec - start1.tv_usec);
+            if (len == 0) {
+                ESP_LOGW(TAG, "Connection closed");
+                goto Done;
+            }
+            else if (len < 0) {
+                ESP_LOGE(TAG, "Error occurred during receiving: errno %s", strerror(errno));
+                goto Done;
+            }
+            else {
+                gettimeofday(&start1, NULL);
+                int sendlen = send(sock, tx_buffer, len_opus, 0);
+                gettimeofday(&end1, NULL);
+                printf("send is %ld us\n", end1.tv_usec - start1.tv_usec);
+                if (sendlen > 0) {
+                    printf("sendlen =%d ,counter=%d \n ", sendlen, counter);
+                    counter += 1;
+                }
+                else {
+                    perror("send failed");
+                    goto Done;
+                }
+            }
+            //------------------------------------------------------------//
+            //-----------------------------------------------------------//
+            // vTaskDelay(1 / portTICK_PERIOD_MS);
+
+            gettimeofday(&end, NULL);
+            printf("                 one frame %ld us\n", end.tv_usec - start.tv_usec);
+        }
+    Done:
+        gettimeofday(&end_total, NULL);
+        printf("one---------- time %lf ms\n", (end_total.tv_sec - start_total.tv_sec) * 1000.0 + (end_total.tv_usec - start_total.tv_usec) / 1000.0);
+        opus_encoder_destroy(enc);
 
         ESP_LOGI(TAG, "Exit Decoding.\n");
         //延迟一秒
@@ -140,85 +212,11 @@ void micronphone_task(void *pvParameters) {
 CLEAN_UP:
     close(listen_sock);
     vTaskDelete(NULL);
-    return;
 }
 
-void do_decode(const int sock) {
-    int len;
-    unsigned char cbits[500];
-    unsigned char *tx_buffer = cbits;
-    unsigned char rx_ok[10];
-    OpusEncoder *enc = encoder_init(RATE, CHANNELS, OPUS_APPLICATION_VOIP);
-    struct timeval start, end, start1, end1, start_total, end_total;
-    opus_int16 in1[encodedatasize];
-    //char * i2s_rx = in1;
-    //xTaskCreate(test_task, "test_task", 5000, NULL, 5, NULL);
-    int counter = 1;
-    int len_opus;
-    gettimeofday(&start_total, NULL);
-    while (1) {
-        gettimeofday(&start, NULL);
+// void do_decode(const int sock) {
 
-        //--------------------------------------------------------------------//
-        size_t BytesRead;
-        gettimeofday(&start1, NULL);
-        ESP_ERROR_CHECK(i2s_read(I2S_NUM_0, (char *) in1, encodedatasize, &BytesRead, portMAX_DELAY));
-        gettimeofday(&end1, NULL);
-        int left = uxTaskGetStackHighWaterMark(NULL);
-        ESP_LOGE(TAG, "%d byte of stack left", left);
-        printf("i2s_read %ld us,BytesRead=%d \n", end1.tv_usec - start1.tv_usec, BytesRead);
-        //-----------------------------------------------------------------//
-        gettimeofday(&start1, NULL);
-        len_opus = opus_encode(enc, in1, frame_size, tx_buffer, MAX_PACKET_SIZE);
-        gettimeofday(&end1, NULL);
-        printf("opus_encode %ld us  ,len_opus[counter]= %d\n", end1.tv_usec - start1.tv_usec, len_opus);
-        //-------------------------------------------------------------------//
-        //
-        if (len_opus < 0) {
-            printf("failed to encode:%s \n", opus_strerror(len_opus));
-            goto Done;
-        }
-        //*(int*)cbits_vtmp =tv;
-        printf("recving \n");
-        gettimeofday(&start1, NULL);
-        len = recv(sock, rx_ok, sizeof(rx_ok), 0);//MSG_DONTWAIT);
-        gettimeofday(&end1, NULL);
-        printf("recv is %ld us\n", end1.tv_usec - start1.tv_usec);
-        if (len == 0) {
-            ESP_LOGW(TAG, "Connection closed");
-            goto Done;
-        }
-        else if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %s", strerror(errno));
-            goto Done;
-        }
-        else {
-            gettimeofday(&start1, NULL);
-            int sendlen = send(sock, tx_buffer, len_opus, 0);
-            gettimeofday(&end1, NULL);
-            printf("send is %ld us\n", end1.tv_usec - start1.tv_usec);
-            if (sendlen > 0) {
-                printf("sendlen =%d ,counter=%d \n ", sendlen, counter);
-                counter += 1;
-            }
-            else {
-                perror("send failed");
-                goto Done;
-            }
-        }
-        //------------------------------------------------------------//
-        //-----------------------------------------------------------//
-        // vTaskDelay(1 / portTICK_PERIOD_MS);
-
-        gettimeofday(&end, NULL);
-        printf("                 one frame %ld us\n", end.tv_usec - start.tv_usec);
-    }
-Done:
-    gettimeofday(&end_total, NULL);
-    printf("one---------- time %lf ms\n", (end_total.tv_sec - start_total.tv_sec) * 1000.0 + (end_total.tv_usec - start_total.tv_usec) / 1000.0);
-    opus_encoder_destroy(enc);
-    return;
-}
+// }
 
 void i2s_config_proc() {
     // i2s config for writing both channels of I2S
