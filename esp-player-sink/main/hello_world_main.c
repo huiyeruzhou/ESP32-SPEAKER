@@ -5,6 +5,8 @@
  */
 
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 #include "esp_chip_info.h"
 #include "esp_flash.h"
 #include "freertos/FreeRTOS.h"
@@ -57,33 +59,9 @@ static void event_handler(void *arg,
     int32_t event_id,
     void *event_data);
 static void tcp_server_task(void *pvParameters);
-static void do_retransmit(const int sock);
 static void do_decode(const int sock);
 void i2s_config_proc();
 
-/*
-void esp_print_tasks(void);
-void test_task(void *param);
-
-void esp_print_tasks(void)
-{
-    char *pbuffer = (char *)calloc(1, 2048);
-    printf("---------------------------------------------\r\n");
-    vTaskGetRunTimeStats(pbuffer);
-    printf("%s", pbuffer);
-    printf("----------------------------------------------\r\n");
-    free(pbuffer);
-}
-
-void test_task(void *param)
-{
-    while(1) {
-        esp_print_tasks();
-        vTaskDelay(3000 / portTICK_PERIOD_MS);
-    }
-}
-
-*/
 
 void app_main(void) {
     printf("Hello world!\n");
@@ -122,12 +100,11 @@ void app_main(void) {
     printf("Minimum free heap size: %d bytes\n",
         esp_get_minimum_free_heap_size());
 
-#ifdef CONFIG_EXAMPLE_IPV4
-    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void *) AF_INET, 3, NULL);
-#endif
-#ifdef CONFIG_EXAMPLE_IPV6
-    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void *) AF_INET6, 3, NULL);
-#endif
+    xTaskCreate(tcp_server_task, "tcp_server", 18000, (void *) AF_INET, 5, NULL);
+
+    while (1) {
+        vTaskDelay(4000 / portTICK_PERIOD_MS);
+    }
 }
 
 void wifi_init_sta(void) {
@@ -219,40 +196,6 @@ static void event_handler(void *arg,
     }
 }
 
-static void do_retransmit(const int sock) {
-    int len;
-    char rx_buffer[128];
-
-    do {
-        len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
-        if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
-        }
-        else if (len == 0) {
-            ESP_LOGW(TAG, "Connection closed");
-        }
-        else {
-            rx_buffer[len] = 0;  // Null-terminate whatever is received and
-            // treat it like a string
-            ESP_LOGI(TAG, "Received %d bytes: %s", len, rx_buffer);
-
-            // send() can return less bytes than supplied length.
-            // Walk-around for robust implementation.
-            int to_write = len;
-            while (to_write > 0) {
-                int written =
-                    send(sock, rx_buffer + (len - to_write), to_write, 0);
-                if (written < 0) {
-                    ESP_LOGE(TAG, "Error occurred during sending: errno %d",
-                        errno);
-                    // Failed to retransmit, giving up
-                    return;
-                }
-                to_write -= written;
-            }
-        }
-    } while (len > 0);
-}
 
 static void tcp_server_task(void *pvParameters) {
     char addr_str[128];
@@ -271,37 +214,24 @@ static void tcp_server_task(void *pvParameters) {
         dest_addr_ip4->sin_port = htons(PORT);
         ip_protocol = IPPROTO_IP;
     }
-#ifdef CONFIG_EXAMPLE_IPV6
-    else if (addr_family == AF_INET6) {
-        struct sockaddr_in6 *dest_addr_ip6 = (struct sockaddr_in6 *) &dest_addr;
-        bzero(&dest_addr_ip6->sin6_addr.un,
-            sizeof(dest_addr_ip6->sin6_addr.un));
-        dest_addr_ip6->sin6_family = AF_INET6;
-        dest_addr_ip6->sin6_port = htons(PORT);
-        ip_protocol = IPPROTO_IPV6;
-    }
-#endif
+
 
     int listen_sock = socket(addr_family, SOCK_STREAM, ip_protocol);
     if (listen_sock < 0) {
-        ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
+        ESP_LOGE(TAG, "Unable to create socket: errno %s", strerror(errno));
         vTaskDelete(NULL);
         return;
     }
     int opt = 1;
     setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
-#if defined(CONFIG_EXAMPLE_IPV4) && defined(CONFIG_EXAMPLE_IPV6)
-    // Note that by default IPV6 binds to both protocols, it is must be disabled
-    // if both protocols used at the same time (used in CI)
-    setsockopt(listen_sock, IPPROTO_IPV6, IPV6_V6ONLY, &opt, sizeof(opt));
-#endif
+
 
     ESP_LOGI(TAG, "Socket created");
 
     int err =
         bind(listen_sock, (struct sockaddr *) &dest_addr, sizeof(dest_addr));
     if (err != 0) {
-        ESP_LOGE(TAG, "Socket unable to bind: errno %d", errno);
+        ESP_LOGE(TAG, "Socket unable to bind: errno %s", strerror(errno));
         ESP_LOGE(TAG, "IPPROTO: %d", addr_family);
         goto CLEAN_UP;
     }
@@ -309,9 +239,13 @@ static void tcp_server_task(void *pvParameters) {
 
     err = listen(listen_sock, 1);
     if (err != 0) {
-        ESP_LOGE(TAG, "Error occurred during listen: errno %d", errno);
+        ESP_LOGE(TAG, "Error occurred during listen: errno %s", strerror(errno));
         goto CLEAN_UP;
     }
+    
+    i2s_config_proc();
+
+    ESP_LOGI(TAG, "i2s config end.\n");
     
     while (1) {
         ESP_LOGI(TAG, "Socket listening");
@@ -322,7 +256,7 @@ static void tcp_server_task(void *pvParameters) {
         int sock =
             accept(listen_sock, (struct sockaddr *) &source_addr, &addr_len);
         if (sock < 0) {
-            ESP_LOGE(TAG, "Unable to accept connection: errno %d", errno);
+            ESP_LOGE(TAG, "Unable to accept connection: errno %s", strerror(errno));
             break;
         }
 
@@ -338,18 +272,8 @@ static void tcp_server_task(void *pvParameters) {
             inet_ntoa_r(((struct sockaddr_in *) &source_addr)->sin_addr, addr_str,
                 sizeof(addr_str) - 1);
         }
-#ifdef CONFIG_EXAMPLE_IPV6
-        else if (source_addr.ss_family == PF_INET6) {
-            inet6_ntoa_r(((struct sockaddr_in6 *) &source_addr)->sin6_addr,
-                addr_str, sizeof(addr_str) - 1);
-        }
-#endif
+
         ESP_LOGI(TAG, "Socket accepted ip address: %s", addr_str);
-
-        i2s_config_proc();
-
-        ESP_LOGI(TAG, "i2s config end.\n");
-
         
         do_decode(sock);
 
@@ -387,7 +311,7 @@ static void do_decode(const int sock) {
 
     printf("   len=%d        recv %dus\n", len, end1.tv_usec - start1.tv_usec);
     if (len < 0) {
-        ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
+        ESP_LOGE(TAG, "Error occurred during receiving: errno %s", strerror(errno));
     }
     else if (len == 0) {
         ESP_LOGW(TAG, "Connection closed");
@@ -401,37 +325,9 @@ static void do_decode(const int sock) {
     gettimeofday(&start_total, NULL);
     int i = 1;
     while (1) {
-        ESP_LOGW(TAG, "i = %d\n", i);
+        ESP_LOGW(TAG, "i = %d\n", i++);
         gettimeofday(&start, NULL);
 
-        //rx_buffer[len] = 0;  // Null-terminate whatever is received and
-                             // treat it like a string
-        //ESP_LOGI(TAG, "Received %d", len);
-        /*
-        gettimeofday(&start2,NULL);
-        a+=1;
-        printf("a=%d\n",a);
-        if(a==2){
-
-            send(sock,confirm,2,0);
-            gettimeofday(&end1,NULL);
-            printf("send %dus\n",end1.tv_usec-start1.tv_usec);
-            if (len>0){
-                a=0;
-            }
-            else{
-                send(sock,confirm,2,0);
-            }
-        }
-        gettimeofday(&end2,NULL);
-        printf("if is %dus\n",end2.tv_usec-start1.tv_usec);
-        */
-        //gettimeofday(&start1,NULL);
-        //memset(out1,0,sizeof(out1));
-        //gettimeofday(&end1,NULL);
-        //ESP_LOGI(TAG,"memset %dus",end1.tv_usec-start1.tv_usec);
-        //ESP_LOGI(TAG,"end2 %dus",end2.tv_usec-start2.tv_usec);
-//--------------------------------------------------------------------//
         gettimeofday(&start1, NULL);
         decodeSamples =
             opus_decode(decoder, rx_buffer, len, out1, frame_size, 0);
@@ -447,6 +343,17 @@ static void do_decode(const int sock) {
         //-------------------------------------------------------------------//
         gettimeofday(&start1, NULL);
         opus_int16 *out2 = out1;
+        gettimeofday(&start1, NULL);
+        out2 = out2 + (decodeSamples);
+        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out2, decodeSamples * 2, &BytesWritten, portMAX_DELAY));
+        gettimeofday(&end1, NULL);
+        printf("i2s_write %dus\n", end1.tv_usec - start1.tv_usec);
+        vTaskDelay(5 / portTICK_PERIOD_MS);
+
+        printf("BytesWritten=%d\n", BytesWritten);
+        gettimeofday(&end, NULL);
+        printf("one frame %dus\n", end.tv_usec - start.tv_usec);
+        
         len = recv(sock, rx_buffer, sizeof(rx_buffer), 0);
         if (len > 0) {
             gettimeofday(&end1, NULL);
@@ -461,29 +368,13 @@ static void do_decode(const int sock) {
             break;
         }
         else if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
+            ESP_LOGE(TAG, "Error occurred during receiving: errno %s", strerror(errno));
             break;
         }
         //------------------------------------------------------------//
         //-----------------------------------------------------------//
 
-        gettimeofday(&start1, NULL);
-        out2 = out2 + (decodeSamples);
-        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out2, decodeSamples * 2, &BytesWritten, portMAX_DELAY));
-        gettimeofday(&end1, NULL);
-        printf("i2s_write %dus\n", end1.tv_usec - start1.tv_usec);
-        vTaskDelay(5 / portTICK_PERIOD_MS);
 
-        /*
-        gettimeofday(&start1,NULL);
-        out2=out2+(decodeSamples/2);
-        ESP_ERROR_CHECK(i2s_write(I2S_NUM_0, out2, decodeSamples*2, &BytesWritten, portMAX_DELAY));
-        gettimeofday(&end1,NULL);
-        printf("i2s_write %dus\n",end1.tv_usec-start1.tv_usec);
-        */
-        printf("BytesWritten=%d\n", BytesWritten);
-        gettimeofday(&end, NULL);
-        printf("one frame %dus\n", end.tv_usec - start.tv_usec);
     }
     gettimeofday(&end_total, NULL);
     printf("one---------- time %lf ms\n", (end_total.tv_sec - start_total.tv_sec) * 1000.0 + (end_total.tv_usec - start_total.tv_usec) / 1000.0);
