@@ -127,7 +127,7 @@ public:
         assert(status < 5);
         status = status_transfer[status][2];
         if (microphone_server_handle != NULL) {
-            vTaskDelete(microphone_server_handle);
+            // vTaskDelete(microphone_server_handle);
         }
         else {
             ESP_LOGE(TAG, "microphone_server_handle is NULL");
