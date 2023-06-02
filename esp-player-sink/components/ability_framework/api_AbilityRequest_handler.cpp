@@ -2,7 +2,7 @@
 #include "handler_common.hpp"
 #include "ability_conext.hpp"
 #include "mic_driver.hpp"
-const static char *TAG = "API_ABILITYRUNNING_HANDLER";
+const static char *TAG = "API_ABILITYREQUEST_HANDLER";
 
 
 /* An HTTP GET handler */

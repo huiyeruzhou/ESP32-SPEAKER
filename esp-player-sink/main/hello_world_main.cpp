@@ -25,10 +25,10 @@
 
 
 
-#define ESP_WIFI_SSID "ChinaUnicom-4DUDHP"
-#define ESP_WIFI_PASS "12345678"
- // #define ESP_WIFI_SSID "testap"
- // #define ESP_WIFI_PASS "testtest"
+// #define ESP_WIFI_SSID "testap"
+// #define ESP_WIFI_PASS "12345678"
+ #define ESP_WIFI_SSID "testap"
+ #define ESP_WIFI_PASS "testtest"
 #define ESP_MAXIMUM_RETRY 5
 #define TAG "ESP_MIC"
 
@@ -103,9 +103,9 @@ extern "C" void app_main(void) {
     ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, sta_netif, &server));
     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, sta_netif, &server));
     ESP_LOGI(TAG, "wifi start");
-    wifi_start_and_connect(sta_netif, "ChinaUnicom-4DUDHP", "12345678");
+    wifi_start_and_connect(sta_netif, ESP_WIFI_SSID, ESP_WIFI_PASS);
 
-    create_broad_task((std::string("http-test+Idle,Stable+") +
+    create_broad_task((std::string(TAG) + std::string("+Idle,Stable+") +
         std::to_string(std::time(nullptr))).c_str());
 
     server = start_webserver();

@@ -280,7 +280,7 @@ OpusEncoder *encoder_init(opus_int32 sampling_rate,
     int bandwidth = OPUS_BANDWIDTH_WIDEBAND;
     int use_vbr = 1;
     int cvbr = 0;
-    int complexity = 1;
+    int complexity = 0;
     int use_inbandfec = 1;
     int forcechannels = 2;
     int use_dtx = 1;
@@ -293,7 +293,7 @@ OpusEncoder *encoder_init(opus_int32 sampling_rate,
     std::cout<<"complexity="<<a<<std::endl; */
     opus_encoder_ctl(enc, OPUS_SET_BANDWIDTH(bandwidth));
     opus_encoder_ctl(enc, OPUS_SET_MAX_BANDWIDTH(bandwidth));
-    opus_encoder_ctl(enc, OPUS_SET_SIGNAL(OPUS_SIGNAL_VOICE));//
+    opus_encoder_ctl(enc, OPUS_SET_SIGNAL(OPUS_SIGNAL_MUSIC));//
     opus_encoder_ctl(enc, OPUS_SET_VBR(use_vbr));       //使用动态比特率
     opus_encoder_ctl(enc, OPUS_SET_VBR_CONSTRAINT(cvbr));//不启用约束VBR，启用可以降低延迟
     /*

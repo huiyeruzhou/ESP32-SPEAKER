@@ -24,7 +24,7 @@ class AbilityContext {
 private:
     constexpr static const char *TAG = "ABILITY_CONTEXT";
     constexpr static const char *abilityName = "ESP32MIC";
-    constexpr static const char *devicesList = "{micDevices: "
+    constexpr static const char *devicesList = "{\"micDevices\": "
         "[{\"channels\": 2,"
         "\"description\" : \"内置音频 模拟立体声\","
         "\"mute\" : false,"
@@ -59,7 +59,7 @@ private:
         //suspend can restart, reconnect
         {STANDBY, RUNNING, UNKNOWN, TERMINATE},
         //nothing can be done to terminate
-        {UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN}
+         {STANDBY, UNKNOWN, UNKNOWN, UNKNOWN}
     };
     int lifecyclePort = 0;
     std::string ip = "";
@@ -69,7 +69,6 @@ private:
 public:
     AbilityContext() {
         gettimeofday((struct timeval *) &last_update, NULL);
-        lifecyclePort = 1;
         //convert to UNIX time_t
         
     }
@@ -106,6 +105,7 @@ public:
     void start() {
         assert(status < 5);
         status = status_transfer[status][0];
+        lifecyclePort = 1;
         gettimeofday((struct timeval *) &last_update, NULL);
     }
     void connect() {
