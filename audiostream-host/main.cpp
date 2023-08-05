@@ -49,7 +49,7 @@ int main() {
     struct sockaddr_in saddr;
     saddr.sin_family=AF_INET;
     saddr.sin_port=htons(1028);
-    inet_pton(AF_INET, "192.168.1.102", &saddr.sin_addr.s_addr);
+    inet_pton(AF_INET, "192.168.1.103", &saddr.sin_addr.s_addr);
     printf("connect before\n");
     int ret =connect(fd,(struct sockaddr*)&saddr,sizeof(saddr));
     printf("connect after\n");

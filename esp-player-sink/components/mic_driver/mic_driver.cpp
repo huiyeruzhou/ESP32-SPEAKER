@@ -193,11 +193,13 @@ void micronphone_task(void *pvParameters) {
 
             gettimeofday(&end, NULL);
             printf("                 one frame %ld us\n", end.tv_usec - start.tv_usec);
+            
         }
     Done:
         gettimeofday(&end_total, NULL);
         printf("one---------- time %lf ms\n", (end_total.tv_sec - start_total.tv_sec) * 1000.0 + (end_total.tv_usec - start_total.tv_usec) / 1000.0);
         opus_encoder_destroy(enc);
+        free(in1);
 
         ESP_LOGI(TAG, "Exit Decoding.\n");
         //延迟一秒
@@ -235,13 +237,12 @@ void i2s_config_proc() {
     };
     // i2s pinout
     static const i2s_pin_config_t pin_config = {
-        .bck_io_num = 18,
-        .ws_io_num = 19,
+        .bck_io_num = 18,//黑
+        .ws_io_num = 19,//白
         .data_out_num = I2S_PIN_NO_CHANGE,
-        .data_in_num = 8
+        .data_in_num = 8//紫
+        //蓝3V3 绿灰GND
     };
-
-
     // install and start i2s driver
     ESP_ERROR_CHECK(i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL));
     ESP_ERROR_CHECK(i2s_set_pin(I2S_NUM_0, &pin_config));
